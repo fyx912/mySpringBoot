@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{static/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{static/css/login.css}">
+
+</head>
+<body>
+
+    <div class="container">
+        <form class="form-signin">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <label for="userNameId" class="sr-only">userName</label>
+            <input type="text" id="userNameId" class="form-control" th:name="userName" placeholder="userName" required />
+            <label for="passwordId" class="sr-only">Password</label>
+            <input type="password" id="passwordId" class="form-control" th:name="password" placeholder="Password" required />
+            <div  >
+                <input type="text" class="form-control-code"  id="codeId" name="code" placeholder="验证码" required />
+                <img id="imgObj"  th:src="validateCode" alt="验证码" onclick="changeImg()" />
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" id="submitId" type="submit">Sign in</button>
+        </form>
+    </div>
+
+
+
+    <script th:src="@{static/bootstrap/js/jquery-3.3.1.min.js}"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script th:src="@{static/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{static/js/login.js}"></script>
+
+</body>
+</html>
