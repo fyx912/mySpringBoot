@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -36,12 +38,13 @@ public class UserTest {
     @Test
     public  void insertUser(){
         User user = new User();
-        user.setId(5);
-        user.setUserName("Jon");
-        user.setName("乔恩");
+        user.setId(7);
+        user.setUserName("fixe");
+        user.setName("菲克斯");
         user.setPassword("123456");
-        user.setAge(20);
+        user.setAge(31);
         user.setPhone("13532550872");
+        user.setDate(LocalDate.now());
         int id = this.userMapper.insertUser(user);
         System.out.println("id=\t"+id);
     }
@@ -61,7 +64,7 @@ public class UserTest {
 
     @Test
     public void delete(){
-        int id = this.userMapper.deleteUser(5);
+        int id = this.userMapper.deleteUser(7);
         System.out.println("id=\t"+id);
     }
 

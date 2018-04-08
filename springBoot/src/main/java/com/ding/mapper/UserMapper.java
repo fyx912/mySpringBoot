@@ -22,8 +22,8 @@ public interface UserMapper {
     User isLogin(@Param("userName") String userName,@Param("password") String password);
 
 //    @InsertProvider(type = UserSqlFacttory.class,method = "insertUser")
-    @Insert("INSERT INTO User  (id, userName, name,password, age, phone) " +
-            "VALUES (#{user.id},#{user.userName},#{user.name},#{user.password},#{user.age},#{user.phone})")
+    @Insert("INSERT INTO User  (id, userName, name,password, age, phone,date) " +
+            "VALUES (#{user.id},#{user.userName},#{user.name},#{user.password},#{user.age},#{user.phone},#{user.date})")
     @Options(useGeneratedKeys = true,keyProperty = "user.id",keyColumn = "id")
     Integer insertUser(@Param("user") User user);
 

@@ -4,6 +4,9 @@ import com.ding.domain.User;
 import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.jdbc.SQL;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Map;
 
 public class UserSqlFacttory {
@@ -30,6 +33,7 @@ public class UserSqlFacttory {
         if (StringUtils.isNotEmpty(user.getPhone())){
             sql.VALUES("phone",sqlStringColumn(user.getPhone()));
         }
+        sql.VALUES("date",sqlStringColumn(new Date().toString()));
         return  sql.toString();
     }
 
@@ -53,6 +57,7 @@ public class UserSqlFacttory {
         if (StringUtils.isNotEmpty(user.getPhone())){
             sb.append("phone="+sqlStringColumn(user.getPhone())+",");
         }
+        sb.append("date='"+LocalDate.now().toString() +"',");
         sql.SET(sb.toString().substring(0,sb.length()-1));
         sql.WHERE("id = "+user.getId());
         return sql.toString();
@@ -65,4 +70,5 @@ public class UserSqlFacttory {
         sb.append("\'");
         return sb.toString();
     }
+
 }
