@@ -44,7 +44,7 @@ public class UserTest {
         user.setPassword("123456");
         user.setAge(31);
         user.setPhone("13532550872");
-        user.setDate(LocalDate.now());
+        user.setDate(new Date());
         int id = this.userMapper.insertUser(user);
         System.out.println("id=\t"+id);
     }

@@ -1,5 +1,7 @@
 package com.ding.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -12,23 +14,25 @@ public class User implements  Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
-    @Column(name = "userName")
+    @Column(name = "username")
     public String userName;
     @Column(name = "name")
     public String name;
-    @Column
+    @Column(name = "password")
     public String password;
-    @Column
+    @Column(name = "age")
     public Integer age;
-    @Column
+    @Column(name = "phone")
     public String phone;
-    @Column
-    public LocalDate date;
+    @Column(name = "date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    public Date date;
 
     public User() {
     }
 
-    public User(String userName, String name, String password, Integer age, String phone, LocalDate date) {
+    public User(String userName, String name, String password, Integer age, String phone, Date date) {
         this.userName = userName;
         this.name = name;
         this.password = password;
@@ -85,26 +89,12 @@ public class User implements  Serializable{
         this.phone = phone;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(userName, user.userName) &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(age, user.age) &&
-                Objects.equals(phone, user.phone) &&
-                Objects.equals(date, user.date);
     }
 
     @Override
