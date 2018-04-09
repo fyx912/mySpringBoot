@@ -1,6 +1,6 @@
 package com.ding.service;
 
-import com.ding.Utils.CodeJson;
+
 import com.ding.domain.User;
 import com.ding.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -10,9 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import java.util.Date;
-import java.util.Optional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -47,8 +45,7 @@ public class JpaTest {
 
     }
 
-
-        @Test
+    @Test
     public void save(){
         User user = new User();
         user.setId(7);
@@ -63,25 +60,25 @@ public class JpaTest {
         System.out.println(user1.getId()+"\t" +user1.getUserName()+"\t"+user1.getPassword());
     }
 
-//    @Test
-//    public void update(){
-//        this.userDao.updateById(30,8);
-//    }
+    @Test
+    public void updateById(){
+        this.userDao.updateById(30,8);
+    }
 
-//    @Test
-//    public void update(){
-//        User user = new User();
-//        user.setId(7);
-//        user.setUserName("fixe");
-//        user.setPassword("123456");
-//        user.setName("菲克斯");
-//        user.setPhone("13435873241");
-//        user.setAge(23);
-//        user.setDate(new Date());
-//        User user1 = this.userDao.save(user);
-//        System.out.println();
-//        System.out.println(user1.getId()+"\t" +user1.getUserName()+"\t"+user1.getPassword());
-//    }
+    @Test
+    public void update(){
+        User user = new User();
+        user.setId(7);
+        user.setUserName("fixe");
+        user.setPassword("123456");
+        user.setName("菲克斯");
+        user.setPhone("13435873241");
+        user.setAge(23);
+        user.setDate(new Date());
+        User user1 = this.userDao.save(user);
+        System.out.println();
+        System.out.println(user1.getId()+"\t" +user1.getUserName()+"\t"+user1.getPassword());
+    }
 
     @Test
     public void delete(){
