@@ -1,12 +1,20 @@
 .gradle/
 .DS_Store
 
+bin/
+
 #Intellij
 *.iml
 *.idea/
 out/
-bulid/
+build/
 target/
 *.log
 logs/
+
+#eclipse
+.project
+.classpath
+.setting/
+
 
