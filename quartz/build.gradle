@@ -1,0 +1,21 @@
+group 'com.ding'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile(
+            //spring 中需要引入的jar
+//            "org.quartz-scheduler:quartz-jobs:2.3.3",
+//            "org.quartz-scheduler:quartz:2.3.3",
+            //spring boot 需要的JAR
+            "org.springframework.boot:spring-boot-starter-quartz:${springBootVersion}"
+    )
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

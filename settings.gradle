@@ -1,6 +1,6 @@
 rootProject.name = 'mySpringBoot'
-rootProject.name = 'mySpringBoot'
 include 'springBoot'
 include 'Swagger-api'
 include 'model'
+include 'quartz'
 

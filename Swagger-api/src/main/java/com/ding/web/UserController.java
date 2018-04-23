@@ -8,20 +8,33 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.Cacheable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class UserController {
 
-    @ApiOperation(value = "获取用户信息",notes = "获取用户信息")
+    @Cacheable(value = "user.all")
+    @ApiOperation(value = "获取所有用户信息",notes = "获取所有用户信息")
     @RequestMapping(value = "user",method = RequestMethod.GET)
-    public User user(){
+    public List<User> user(){
+        List<User> list = new ArrayList<>();
         User user = new User();
         user.setId(1);
         user.setUsername("admin");
         user.setPassword("123456");
         user.setName("tinTin");
         user.setAddress("shenZhen");
-        return user;
+        list.add(user);
+        try {
+            Thread.sleep(1000)
+            ;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     @ApiOperation(value = "根据ID获取用户信息",notes = "根据ID获取用户信息")
