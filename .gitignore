@@ -4,3 +4,4 @@
 #Intellij
 *.iml
 *.idea
+out/
