@@ -3,5 +3,10 @@
 
 #Intellij
 *.iml
-*.idea
+*.idea/
 out/
+bulid/
+target/
+*.log
+logs/
+
