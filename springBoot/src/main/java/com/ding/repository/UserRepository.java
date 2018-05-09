@@ -1,6 +1,6 @@
 package com.ding.repository;
 
-import com.ding.domain.User;
+import com.ding.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

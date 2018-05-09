@@ -1,8 +1,8 @@
 package com.ding.service;
 
 
-import com.ding.domain.User;
 import com.ding.mapper.UserMapper;
+import com.ding.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

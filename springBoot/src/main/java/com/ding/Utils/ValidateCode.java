@@ -22,7 +22,7 @@ public class ValidateCode {
     // 验证码字符个数
     private int codeCount = 5;
     // 验证码干扰线数
-    private int lineCount = 150;
+    private int lineCount = 100;
     // 验证码
     private String code = null;
     // 验证码图片Buffer
@@ -78,7 +78,7 @@ public class ValidateCode {
         // 生成随机数
         Random random = new Random();
         // 将图像填充为白色
-        g.setColor(Color.WHITE);
+        g.setColor(Color.gray);
         g.fillRect(0, 0, width, height);
         // 创建字体,可以修改为其它的
         Font font = new Font("Fixedsys", Font.PLAIN, fontHeight);

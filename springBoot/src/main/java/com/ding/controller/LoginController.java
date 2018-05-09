@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.ding.Utils.CodeJson;
-import com.ding.domain.User;
+import com.ding.model.User;
 import com.ding.service.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -41,7 +40,7 @@ public class LoginController {
                     if (StringUtils.isNotEmpty(userName)) {
                         if (StringUtils.isNotEmpty(password)) {
                             User user = this.userService.isLogin(userName, password);
-                            if (user!=null&&user.getUserName().equals(userName)&&user.getPassword().equals(password)){
+                            if (user!=null&&user.getUsername().equals(userName)&&user.getPassword().equals(password)){
                                 request.getSession().setAttribute("userName",userName);
                                 return CodeJson.success();
                             }

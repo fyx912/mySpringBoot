@@ -42,7 +42,7 @@ public class UserController {
     @RequestMapping(value = "user{id}",method = RequestMethod.GET)
     public User user(@PathVariable Integer id){
         User user = new User();
-        user.getId(id);
+        user.getId();
         user.setUsername("admin");
         user.setPassword("123456");
         user.setName("tinTin");
@@ -55,7 +55,7 @@ public class UserController {
     @RequestMapping(value = "user{id}",method = RequestMethod.PUT)
     public User updateUser(@PathVariable Integer id){
         User user = new User();
-        user.getId(id);
+        user.getId();
         user.setUsername("admin");
         user.setPassword("123456");
         user.setName("tinTin");

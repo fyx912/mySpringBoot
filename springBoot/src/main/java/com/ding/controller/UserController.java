@@ -1,7 +1,7 @@
 package com.ding.controller;
 
 import com.ding.Utils.CodeJson;
-import com.ding.domain.User;
+import com.ding.model.User;
 import com.ding.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +36,7 @@ public class UserController {
     public String user(User user){
         System.out.println(user);
         if (user != null){
-            System.out.println(user.getId()+user.getUserName());
+            System.out.println(user.getId()+user.getUsername());
             return  this.userService.insertUser(user).toString();
         }else {
             return "参数为空";

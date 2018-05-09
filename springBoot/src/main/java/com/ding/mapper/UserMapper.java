@@ -1,6 +1,6 @@
 package com.ding.mapper;
 
-import com.ding.domain.User;
+import com.ding.model.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

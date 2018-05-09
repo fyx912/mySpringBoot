@@ -1,7 +1,7 @@
 package com.ding.service;
 
 
-import com.ding.domain.User;
+import com.ding.model.User;
 
 import java.util.List;
 

@@ -11,6 +11,10 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+
+/**
+ * 访问的地址:swagger-ui.html
+ */
 @EnableSwagger2
 @Configuration
 public class Swagger2Config {

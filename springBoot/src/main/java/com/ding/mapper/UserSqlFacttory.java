@@ -1,10 +1,9 @@
 package com.ding.mapper;
 
-import com.ding.domain.User;
+import com.ding.model.User;
 import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.jdbc.SQL;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Map;
@@ -18,8 +17,8 @@ public class UserSqlFacttory {
         if (StringUtils.isNotEmpty(user.getId().toString())){
             sql.VALUES("id",user.getId().toString());
         }
-        if (StringUtils.isNotEmpty(user.getUserName())){
-            sql.VALUES("userName",sqlStringColumn(user.getUserName()));
+        if (StringUtils.isNotEmpty(user.getUsername())){
+            sql.VALUES("userName",sqlStringColumn(user.getUsername()));
         }
         if (StringUtils.isNotEmpty(user.getPassword())){
             sql.VALUES("password",sqlStringColumn(user.getPassword()));
@@ -42,8 +41,8 @@ public class UserSqlFacttory {
         SQL sql = new SQL();
         sql.UPDATE("User");
         StringBuilder sb = new StringBuilder();
-        if (StringUtils.isNotEmpty(user.getUserName())) {
-            sb.append("userName="+sqlStringColumn(user.getUserName())+",");
+        if (StringUtils.isNotEmpty(user.getUsername())) {
+            sb.append("userName="+sqlStringColumn(user.getUsername())+",");
         }
         if (StringUtils.isNotEmpty(user.getPassword())){
             sb.append("password="+sqlStringColumn(user.getPassword())+",");

@@ -1,24 +1,50 @@
 package com.ding.model;
 
-public class User {
-    private Integer id;
-    private String username;
-    private String password;
-    private String name;
-    private String address;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
+
+@Entity
+@Table(name = "User")
+public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer id;
+    @Column(name = "username")
+    public String username;
+    @Column(name = "name")
+    public String name;
+    @Column(name = "password")
+    public String password;
+    @Column(name = "age")
+    public Integer age;
+    @Column(name = "phone")
+    public String phone;
+    @Column(name = "date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    public Date date;
+
+    public String address;
 
     public User() {
     }
 
-    public User(Integer id, String username, String password, String name, String address) {
-        this.id = id;
+    public User(String username, String name, String password, Integer age, String phone, Date date, String address) {
         this.username = username;
-        this.password = password;
         this.name = name;
+        this.password = password;
+        this.age = age;
+        this.phone = phone;
+        this.date = date;
         this.address = address;
     }
 
-    public Integer getId(Integer id) {
+    public Integer getId() {
         return this.id;
     }
 
@@ -34,6 +60,14 @@ public class User {
         this.username = username;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -42,12 +76,28 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getAddress() {
@@ -59,13 +109,8 @@ public class User {
     }
 
     @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+    public int hashCode() {
+
+        return Objects.hash(id, username, name, password, age, phone, date);
     }
 }

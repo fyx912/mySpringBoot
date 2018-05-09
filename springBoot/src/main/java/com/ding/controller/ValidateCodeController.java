@@ -19,7 +19,7 @@ public class ValidateCodeController {
         response.setDateHeader("Expires",0);
 
         HttpSession  session = request.getSession();
-        ValidateCode validateCode = new ValidateCode(80,30,4,80);
+        ValidateCode validateCode = new ValidateCode(80,30,4,30);
         session.setAttribute("code",validateCode.getCode());
         try {
             validateCode.write(response.getOutputStream());
