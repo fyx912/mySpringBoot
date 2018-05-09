@@ -2,8 +2,9 @@ package com.ding.service;
 
 
 import com.ding.mapper.UserMapper;
-import com.ding.model.User;
+import com.ding.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +13,11 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+
+    @Cacheable("user")
     @Override
     public List<User> getUser() {
+        this.simulateSlowService();
         return this.userMapper.getUser();
     }
 
@@ -45,5 +49,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User isLogin(String userName, String password) {
         return this.userMapper.isLogin(userName,password);
+    }
+
+    // Don't do this at home
+    private void simulateSlowService() {
+        try {
+            long time = 3000L;
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
     }
 }

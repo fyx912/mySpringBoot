@@ -1,7 +1,7 @@
 package com.ding.controller;
 
 import com.ding.Utils.CodeJson;
-import com.ding.model.User;
+import com.ding.domain.User;
 import com.ding.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +14,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @RequestMapping(value = "user",method = RequestMethod.GET)
     @ResponseBody
     public String userAll(){
+        long startTime = System.currentTimeMillis();
         List<User> list = this.userService.getUser();
+        long endTime = System.currentTimeMillis()-startTime;
+        System.out.println("endTime=====>"+endTime);
         return  CodeJson.success(list);
     }
 

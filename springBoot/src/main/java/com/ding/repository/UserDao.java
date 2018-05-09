@@ -1,6 +1,6 @@
 package com.ding.repository;
 
-import com.ding.model.User;
+import com.ding.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

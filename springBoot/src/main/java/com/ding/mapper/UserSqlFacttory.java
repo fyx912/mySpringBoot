@@ -1,6 +1,7 @@
 package com.ding.mapper;
 
-import com.ding.model.User;
+
+import com.ding.domain.User;
 import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.jdbc.SQL;
 

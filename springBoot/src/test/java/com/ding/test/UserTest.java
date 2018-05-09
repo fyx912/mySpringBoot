@@ -23,7 +23,14 @@ public class UserTest {
     public void user(){
         List<User> list = this.userMapper.getUser();
         for (User user:list) {
-            System.out.println(user.getId()+"\t" +"\t"+user.getUserName()+
+            System.out.println(user.getId()+"\t" +"\t"+user.getUsername()+
+                    "\t"+user.getName()+"\t"+user.getPassword());
+        }
+
+
+        List<User> listtow = this.userMapper.getUser();
+        for (User user:listtow) {
+            System.out.println(user.getId()+"\t" +"\t"+user.getUsername()+
                     "\t"+user.getName()+"\t"+user.getPassword());
         }
 
@@ -32,14 +39,14 @@ public class UserTest {
     @Test
     public void getUserById(){
        User user = this.userMapper.getUserById(1);
-       System.out.println(user.getId()+"\t" +user.getUserName()+"\t"+user.getPassword());
+       System.out.println(user.getId()+"\t" +user.getUsername()+"\t"+user.getPassword());
     }
 
     @Test
     public  void insertUser(){
         User user = new User();
         user.setId(7);
-        user.setUserName("fixe");
+        user.setUsername("fixe");
         user.setName("菲克斯");
         user.setPassword("123456");
         user.setAge(31);
@@ -53,7 +60,7 @@ public class UserTest {
     public  void updateUser(){
         User user = new User();
         user.setId(5);
-        user.setUserName("Jon");
+        user.setUsername("Jon");
         user.setName("乔恩");
         user.setPassword("654321");
         user.setAge(24);

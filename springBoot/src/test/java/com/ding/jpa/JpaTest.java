@@ -26,21 +26,21 @@ public class JpaTest {
     @Test
     public void user(){
         Iterable<User> list = this.userDao.findAll();
-        list.forEach(user -> System.out.println(user.getId()+"\t" +"\t"+user.getUserName()+
+        list.forEach(user -> System.out.println(user.getId()+"\t" +"\t"+user.getUsername()+
                 "\t"+user.getName()+"\t"+user.getPassword()));
     }
 
     @Test
     public void findById(){
         User user = this.userDao.findById(1);
-        System.out.println(user.getId()+"\t" +user.getUserName()+"\t"+user.getPassword());
+        System.out.println(user.getId()+"\t" +user.getUsername()+"\t"+user.getPassword());
     }
 
     @Test
     public void findPage() {
         Page<User> page = this.userDao.findAll(new PageRequest(0,5));
         for (User user : page){
-            System.out.println(user.getId()+"\t" +user.getUserName()+"\t"+user.getPassword());
+            System.out.println(user.getId()+"\t" +user.getUsername()+"\t"+user.getPassword());
         }
 
     }
@@ -49,7 +49,7 @@ public class JpaTest {
     public void save(){
         User user = new User();
         user.setId(7);
-        user.setUserName("fixe");
+        user.setUsername("fixe");
         user.setPassword("123456");
         user.setName("菲克斯");
         user.setPhone("13435873241");
@@ -57,7 +57,7 @@ public class JpaTest {
         user.setDate(new Date());
         User user1 = this.userRepository.save(user);
         System.out.println();
-        System.out.println(user1.getId()+"\t" +user1.getUserName()+"\t"+user1.getPassword());
+        System.out.println(user1.getId()+"\t" +user1.getUsername()+"\t"+user1.getPassword());
     }
 
     @Test
@@ -69,7 +69,7 @@ public class JpaTest {
     public void update(){
         User user = new User();
         user.setId(7);
-        user.setUserName("fixe");
+        user.setUsername("fixe");
         user.setPassword("123456");
         user.setName("菲克斯");
         user.setPhone("13435873241");
@@ -77,7 +77,7 @@ public class JpaTest {
         user.setDate(new Date());
         User user1 = this.userDao.save(user);
         System.out.println();
-        System.out.println(user1.getId()+"\t" +user1.getUserName()+"\t"+user1.getPassword());
+        System.out.println(user1.getId()+"\t" +user1.getUsername()+"\t"+user1.getPassword());
     }
 
     @Test

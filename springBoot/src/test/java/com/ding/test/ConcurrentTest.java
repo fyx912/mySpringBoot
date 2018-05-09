@@ -52,7 +52,7 @@ public class ConcurrentTest {
                 e.printStackTrace();
             }
             List<User> list = userMapper.getUser();
-            list.forEach(user ->  System.out.println(user.getId()+"\t" +"\t"+user.getUserName()+
+            list.forEach(user ->  System.out.println(user.getId()+"\t" +"\t"+user.getUsername()+
                     "\t"+user.getName()+"\t"+user.getPassword()));
             System.out.println(count+"----------------"+Thread.currentThread().getName());
         }
@@ -63,7 +63,7 @@ public class ConcurrentTest {
         long startTime = System.currentTimeMillis();
         for (int i=0;i<sum;i++){
             List<User> list = userMapper.getUser();
-            list.forEach(user ->  System.out.println(user.getId()+"\t" +"\t"+user.getUserName()+
+            list.forEach(user ->  System.out.println(user.getId()+"\t" +"\t"+user.getUsername()+
                     "\t"+user.getName()+"\t"+user.getPassword()));
         }
         System.out.println("End-time:"+(System.currentTimeMillis()-startTime));

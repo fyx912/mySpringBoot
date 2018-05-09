@@ -1,4 +1,4 @@
-package com.ding.model;
+package com.ding.domain;
 
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,6 +29,7 @@ public class User implements Serializable {
     @Temporal(TemporalType.DATE)
     public Date date;
 
+    @Transient
     public String address;
 
     public User() {
