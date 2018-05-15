@@ -3,6 +3,8 @@
 
 bin/
 
+*.class
+
 #Intellij
 *.iml
 *.idea/
@@ -15,6 +17,6 @@ logs/
 #eclipse
 .project
 .classpath
-.setting/
+.settins/
 
 
