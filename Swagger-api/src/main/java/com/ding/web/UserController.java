@@ -1,6 +1,6 @@
 package com.ding.web;
 
-import com.ding.model.User;
+import com.ding.domain.User;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 

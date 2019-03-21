@@ -3,4 +3,5 @@ include 'springBoot'
 include 'Swagger-api'
 include 'model'
 include 'quartz'
+include 'elasticsearch'
 
