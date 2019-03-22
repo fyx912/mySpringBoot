@@ -11,7 +11,6 @@
 package com.ding.repository;
 
 import com.ding.model.Employer;
-import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Component;
 
 
@@ -25,11 +24,11 @@ import org.springframework.stereotype.Component;
  * @since 1.0.0
  */
 @Component
-public interface EmployerRepository<Entity> extends ElasticsearchRepository<Entity,String> {
+public interface EmployerRepository extends BaseElasticsearch<Employer,String> {
     /**
      * 查询雇员信息
      * @param id
      * @return
      */
-    Employer queryEmployeeById(String id);
+    Employer  queryEmployeeById(String id);
 }

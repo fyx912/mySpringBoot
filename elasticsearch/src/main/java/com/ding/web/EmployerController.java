@@ -38,10 +38,10 @@ public class EmployerController {
     public String add(){
         Employer employer = new Employer();
         employer.setId("1");
-        employer.setFirstName("ding");
-        employer.setFirstName("yi");
+        employer.setFirstName("tinTin");
+        employer.setFirstName("fyx912");
         employer.setAge(28);
-        employer.setAbout(" I am in peking!");
+        employer.setAbout(" I am in peking------!");
         repository.save(employer);
         log.info(" add a Object!");
         return "success";
@@ -49,7 +49,7 @@ public class EmployerController {
 
     @GetMapping("query")
     public String query(){
-        Employer employer = repository.queryEmployeeById("1");
+        Employer employer = repository.queryEmployeeById("2");
         log.info(employer.toString());
         return  employer.toString();
     }
