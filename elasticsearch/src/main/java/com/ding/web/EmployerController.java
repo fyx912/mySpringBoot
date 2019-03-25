@@ -44,14 +44,21 @@ public class EmployerController {
         employer.setAbout(" I am in peking------!");
         repository.save(employer);
         log.info(" add a Object!");
-        return "success";
+        return "success:("+employer+")";
     }
 
     @GetMapping("query")
     public String query(){
-        Employer employer = repository.queryEmployeeById("2");
+        Employer employer = repository.queryEmployeeById("1");
         log.info(employer.toString());
         return  employer.toString();
     }
+
+//    @GetMapping("update")
+//    public String update(){
+////        Employer employer = repository.("1");
+//        log.info(employer.toString());
+//        return  employer.toString();
+//    }
 
 }

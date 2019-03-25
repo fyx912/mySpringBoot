@@ -10,10 +10,14 @@
  */
 package com.ding.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
+
+import java.util.Date;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -26,15 +30,14 @@ import org.springframework.data.elasticsearch.annotations.Field;
 
 @Document(indexName = "company",type = "employer",shards = 1,replicas = 0,refreshInterval = "-1")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Employer {
     @Id
     private String id;
-    @Field
     private String firstName;
-    @Field
     private String lastName;
-    @Field
     private Integer age = 0;
-    @Field
     private String about;
+    private Date date;
 }

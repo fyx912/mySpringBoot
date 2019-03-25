@@ -12,7 +12,7 @@ repositories {
 }
 
 ext{
-    elasticsearchVersion = "5.6.RELEASE"
+    elasticsearchVersion = "6.2.2.RELEASE"
 }
 
 dependencies {
