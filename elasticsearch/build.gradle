@@ -19,8 +19,7 @@ dependencies {
     compile (
             "org.elasticsearch:elasticsearch:${elasticsearchVersion}",
             "org.elasticsearch.client:transport:transport${elasticsearchVersion}",
-            "org.springframework.boot:spring-boot-starter-data-elasticsearch:${springBootVersion}",
-            group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
+            "org.springframework.boot:spring-boot-starter-data-elasticsearch:${springBootVersion}"
     )
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
