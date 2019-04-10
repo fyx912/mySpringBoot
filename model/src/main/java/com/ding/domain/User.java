@@ -28,11 +28,16 @@ public class User implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     public Date date;
-
     @Transient
     public String address;
 
     public User() {
+    }
+
+    public User(String name,Integer age,String address){
+        this.name=name;
+        this.age=age;
+        this.address=address;
     }
 
     public User(String username, String name, String password, Integer age, String phone, Date date, String address) {
@@ -108,6 +113,8 @@ public class User implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
+
+
 
     @Override
     public int hashCode() {

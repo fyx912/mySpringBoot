@@ -5,4 +5,8 @@ include 'model'
 include 'quartz'
 include 'elasticsearch'
 include 'rabbitmq'
+include 'netty'
+include 'springBoot-webSocket'
+include 'elastic-job'
+include 'common'
 

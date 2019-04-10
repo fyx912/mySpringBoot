@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>webSocket 文件上传</title>
+</head>
+<body onload="init()">
+    <input type="button"value="send" onclick="sendMsg()"/>
+
+    <div id="show"style="width:500px; height:300px; border:1px solid"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var url = "127.0.0.1:8080";
+    var ws ={};
+    function init() {
+        ws =new WebSocket("ws://" + url + "/websocket/uploadFile");
+        ws.onopen=function (evt) {
+            console.log("open.....");
+            ws.send("");
+        }
+        ws.onmessage= function (evt) {
+            var reader = new FileReader();
+            reader.onload=function(eve){
+                if(eve.target.readyState==FileReader.DONE){
+                    var img =document.createElement("img");
+                    img.src=this.result;
+                    document.getElementById("show").appendChild(img);
+                }
+            }
+            reader.readAsDataURL(event.data);
+        }
+    }
+
+    //向服务端发送信息，这样服务端就会触发SendImage.java的getMessage方法，从
+    //而该方法回传给客户端一个图片
+    function sendMsg() {
+        ws.send("hello");//发送的内容为任意字符，主要为了触发对应的方法
+    }
+</script>

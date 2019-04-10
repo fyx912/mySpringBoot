@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>webSocket 文件上传</title>
+</head>
+<body>
+<div style="margin: auto;text-align: center">
+    <input type="button" value="sendFile" onclick="sendFile()"/>
+    <input type="file" id="file" multiple required    />
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var url = "127.0.0.1:8080";
+
+    var ws;
+
+    ws =new WebSocket("ws://" + url + "/websocket/downloadsFile");
+    ws.onopen = function open() {
+        console.log("正在连接中...")
+        ws.send("I'm Browser 准备发送数据....")
+    }
+    // function openFile() {
+    ws.onmessage= function (evt) {
+        var received_msg = evt.data;
+        console.log("后台数据接收到:" +received_msg);
+    }
+    //连接关闭的回调事件
+    ws.onclose = function(){
+        console.log("连接已关闭...");
+    };
+
+    var bytesPerPiece = 1024; // 每个文件切片大小定为1024KB .
+    var totalPieces;//切片大小
+    var end = 0;
+    var index = 0;
+    var start = 0;
+
+        var count = 0;
+
+
+    function sendFile(){
+        console.log(index,start,end);
+        var blob = document.getElementById("file").files[0];
+        if(!blob) return;
+        console.log("fileName:"+blob.name+",size:"+blob.size );
+        //发送文件名
+        ws.send(blob.name+":fileStart");
+
+        var fileSize = blob.size;
+        if (false){
+        if (fileSize > bytesPerPiece){
+            totalPieces = blob.size*bytesPerPiece;//每次切片大小
+            while (start < fileSize){
+                end = start + bytesPerPiece;
+                var num = fileSize - end;
+                if (end > fileSize){
+                    end = fileSize;
+                }
+                console.log("第",index," 次 开始的文件大小:",start,"结束:",end,"剩余文件大小:",num);
+                var filePieces = blob.slice(start,end);//切割文件
+                console.log("切分后的名称:",index+"_"+blob.name,"start="+start,"fileSize:"+fileSize);
+                console.log("fileName:",+index+"_"+blob.name);
+                uploadFile(filePieces);
+                start = end;
+                index++;
+                ws.send(index);
+                count += start;
+            }
+            console.log("count==",count);
+        }else {
+            uploadFile(blob);
+        }
+
+        console.log("blob文件发送完毕...","fileSendSuccess");
+
+        ws.send("fileSendSuccess");//发送成功标示
+        // var reader = new FileReader();
+        //以二进制形式读取文件
+        // reader.readAsArrayBuffer(file);
+        //文件读取完毕后该函数响应
+        // reader.onload = function loaded(evt) {
+        //     var blob = evt.target.result;
+            //发送二进制表示的文件
+            // ws.send(blob);
+
+            // if(isWithText){
+            //     ws.send(file.name+":fileFinishWithText");
+            // }else{
+            //     ws.send(file.name+":fileFinishSingle");
+            // }
+            // console.log("finnish");
+        // }
+        // inputElement.outerHTML=inputElement.outerHTML; //清空<input type="file">的值
+    }
+
+    //传送文件
+    function uploadFile(file) {
+        var reader = new FileReader();
+        reader.readAsArrayBuffer(file);
+        reader.onload = function loaded(evt) {
+            var blob = evt.target.result;
+            //发送二进制表示的文件
+            ws.send(blob);
+        }
+        console.log(file.name,"finnish")
+    }
+</script>

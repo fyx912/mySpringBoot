@@ -25,7 +25,10 @@ subprojects {
                 "org.springframework.boot:spring-boot-devtools:${springBootVersion}",
                 "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}",
 
+                "commons-lang:commons-lang:2.6",
+
                 group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
+
         )
         compile group: 'com.alibaba', name: 'fastjson', version: '1.2.56'
 
