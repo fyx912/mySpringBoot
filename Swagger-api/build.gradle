@@ -13,7 +13,7 @@ dependencies {
 
     compile(
             //引入模块
-            project(":model"),
+            project(":model"),project(":common"),
             "io.springfox:springfox-swagger2:${springfox}",
             "io.springfox:springfox-swagger-ui:${springfox}"
     )
