@@ -1,7 +1,6 @@
-package com.ding.common;
+package com.ding.common.exception;
 
-import com.ding.utils.Result;
-import com.ding.utils.ResultVo;
+import com.ding.common.utils.JsonResultUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -22,13 +21,15 @@ public class ExceptionHandle {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public String handle(Exception e){
-        if (e instanceof UserException){
-            UserException userException = (UserException)e;
-            log.error("UserException code:[{}],msg:[]",((UserException) e).getCode(),e.getMessage());
-            return ResultVo.getError(userException.getCode(),userException.getMessage());
+        if (e instanceof UserException ){
+            UserException my = (UserException) e;
+            log.error("UserException info:{}",my.getMsg());
+//            log.error("UserException:",e);
+            return JsonResultUtils.failed(my.getMsg());
         }else{
-            log.error("【系统异常】={}",e);
-            return ResultVo.getError(-1,"未知错误！");
+            log.error("【系统异常】,{}",e);
+            e.printStackTrace();
+            return JsonResultUtils.error("未知错误！");
         }
 
     }

@@ -1,4 +1,4 @@
-package com.ding.domain;
+package com.ding.model;
 
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -34,8 +34,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Integer id,String name,Integer age,String address){
-        this.id=id;
+    public User(String name, Integer age, String address){
         this.name=name;
         this.age=age;
         this.address=address;
@@ -50,7 +49,6 @@ public class User implements Serializable {
         this.date = date;
         this.address = address;
     }
-
 
     public Integer getId() {
         return this.id;
@@ -120,20 +118,7 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, name, password, age, phone, date);
-    }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", age=" + age +
-                ", phone='" + phone + '\'' +
-                ", date=" + date +
-                ", address='" + address + '\'' +
-                '}';
+        return Objects.hash(id, username, name, password, age, phone, date);
     }
 }

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.Map;
 
-public class UserSqlFacttory {
+public class UserSqlFactory {
     public String insertUser(Map<String ,User> para){
         User user = para.get("user");
         SQL sql = new SQL();
