@@ -17,7 +17,7 @@ import java.util.List;
 
 @Component
 @RestController
-public class UserController {
+public class UserWeb {
     @Autowired
     private UserService userService;
 
