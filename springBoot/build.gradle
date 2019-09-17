@@ -17,6 +17,7 @@ dependencies {
     compile (
             //引入模块
             project(":model"),
+            project(":common"),
             "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
             "org.springframework.boot:spring-boot-starter-aop:${springBootVersion}",
             "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}",

@@ -1,6 +1,5 @@
 package com.ding.common.monitor;
 
-import com.alibaba.fastjson.JSON;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,6 +12,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+
 /**
  *
  * @Description: AOP
@@ -63,22 +64,24 @@ public class WebAspect {
         // 接收到请求，记录请求内容
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = requestAttributes.getRequest();
-        logger.info("\n");
+
         // 记录下请求内容
-        logger.info("Start Record Time:{}",startTime.get());
-        logger.info("URL:[{}],HTTP METHOD:[{}],Class_Method:[{}],request parameter:[{}]",
-                request.getRequestURL(),request.getMethod(),
-                joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName(),
-                JSON.toJSONString(request.getParameterMap()));
-        logger.info("Cookies:{}",JSON.toJSONString(request.getCookies()));
-        logger.info("Args:{}", JSON.toJSONString(joinPoint.getArgs()));
+        logger.info("Start Record Time : "+startTime.get());
+        logger.info("OS:\t"+System.getProperty("os.name"));
+        logger.info("IP:\t"+request.getRemoteAddr()+"\t port:"+request.getServerPort());
+        logger.info("URL:\t"+request.getRequestURI());
+        logger.info("Request Language : "+request.getContentType());
+        logger.info("HTTP_METHOD: "+request.getMethod());
+        logger.info("Cookies: "+request.getCookies());
+        logger.info("Class_Method: "+joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
+        logger.info("Args: "+ Arrays.toString(joinPoint.getArgs()));
     }
 
     @AfterReturning(returning = "response",pointcut = "webLog()")
     public void doAfterReturning(Object response){
         // 处理完请求，返回内容
-        logger.info("Response:[{}] ",response);
-        logger.info("End Time :[{}] ",(System.currentTimeMillis()-startTime.get()));
+        logger.info("Response:[{}]",response);
+        logger.info("End Time :[{}]ms ",(System.currentTimeMillis()-startTime.get()));
         logger.info("\n");
     }
 }
