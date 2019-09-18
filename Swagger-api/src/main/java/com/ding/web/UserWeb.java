@@ -1,7 +1,7 @@
 package com.ding.web;
 
 import com.ding.common.exception.UserException;
-import com.ding.domain.User;
+import com.ding.domain.Account;
 import com.ding.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -17,14 +17,14 @@ import java.util.List;
 
 @Component
 @RestController
-public class UserController {
+public class UserWeb {
     @Autowired
     private UserService userService;
 
     @Cacheable(value = "user")
     @ApiOperation(value = "获取所有用户信息",notes = "获取所有用户信息")
     @RequestMapping(value = "user",method = RequestMethod.GET)
-    public List<User> userAll(){
+    public List<Account> userAll(){
         this.stop();
         return userService.findUserAll();
     }
@@ -33,7 +33,7 @@ public class UserController {
     @ApiOperation(value = "根据ID获取用户信息",notes = "根据ID获取用户信息")
     @ApiImplicitParam(dataType = "int",name = "id",value = "id",required = true,paramType = "path")
     @RequestMapping(value = "user/{id}",method = RequestMethod.GET)
-    public User findUser(@PathVariable Integer id){
+    public Account findUser(@PathVariable Integer id){
         stop();
         return userService.findUserById(id);
     }
@@ -42,13 +42,13 @@ public class UserController {
     @ApiOperation(value = "根据ID修改用户信息")
     @ApiImplicitParam(dataType = "int",name = "id",value = "id",required = true,paramType = "path")
     @RequestMapping(value = "user/{id}",method = RequestMethod.PUT)
-    public User updateUser(@PathVariable Integer id){
+    public Account updateUser(@PathVariable Integer id){
         stop();
         return userService.updateUserById(id);
     }
 
     @RequestMapping(value = "user/update/{id}")
-    public User updateUsers(@PathVariable Integer id){
+    public Account updateUsers(@PathVariable Integer id){
         stop();
         return userService.updateUserById(id);
     }
