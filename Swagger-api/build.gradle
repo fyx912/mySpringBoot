@@ -6,7 +6,7 @@ apply plugin: 'java'
 sourceCompatibility = 1.8
 
 ext{
-    springfox="2.8.0"
+    springfox="2.9.2"
 }
 
 dependencies {

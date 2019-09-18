@@ -1,5 +1,6 @@
 package com.ding.common.monitor;
 
+import com.alibaba.fastjson.JSONObject;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -74,13 +75,13 @@ public class WebAspect {
         logger.info("HTTP_METHOD: "+request.getMethod());
         logger.info("Cookies: "+request.getCookies());
         logger.info("Class_Method: "+joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
-        logger.info("Args: "+ Arrays.toString(joinPoint.getArgs()));
+        logger.info("Parameter Args: "+ Arrays.toString(joinPoint.getArgs()));
     }
 
     @AfterReturning(returning = "response",pointcut = "webLog()")
     public void doAfterReturning(Object response){
         // 处理完请求，返回内容
-        logger.info("Response:[{}]",response);
+        logger.info("Response:[{}]", JSONObject.toJSONString(response));
         logger.info("End Time :[{}]ms ",(System.currentTimeMillis()-startTime.get()));
         logger.info("\n");
     }
