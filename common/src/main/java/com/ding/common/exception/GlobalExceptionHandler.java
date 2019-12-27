@@ -9,23 +9,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @program: mySpringBoot
- * @description: 异常处理
+ * @description: 全局异常处理
  * @author: tinTin
  * @create: 2019-04-24 17:49
  */
 
 @ControllerAdvice
-public class ExceptionHandle {
-    private Logger log = LoggerFactory.getLogger(ExceptionHandle.class);
+public class GlobalExceptionHandler {
+    private Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public String handle(Exception e){
+    public String handle(Exception e) throws Exception{
         if (e instanceof UserException ){
             UserException my = (UserException) e;
             log.error("UserException info:{}",my.getMsg());
 //            log.error("UserException:",e);
             return JsonResultUtils.failed(my.getMsg());
+        }else if (e instanceof NullPointerException || e instanceof NullException){
+            if (e instanceof NullPointerException){
+                log.error("UserException info:{}","数据不能为空");
+            }
+            return JsonResultUtils.failed("数据不能为空");
         }else{
             log.error("【系统异常】,{}",e);
             e.printStackTrace();
