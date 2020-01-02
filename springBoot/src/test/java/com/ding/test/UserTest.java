@@ -1,7 +1,6 @@
 package com.ding.test;
 
-import com.ding.domain.User;
-import com.ding.mapper.UserMapper;
+import com.ding.model.User;
 import com.ding.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +24,6 @@ public class UserTest {
             System.out.println(user.getId()+"\t" +"\t"+user.getUsername()+
                     "\t"+user.getName()+"\t"+user.getPassword());
         }
-
 
         List<User> listtow = this.userMapper.getUser();
         for (User user:listtow) {

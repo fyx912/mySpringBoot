@@ -8,8 +8,8 @@ import org.springframework.cache.annotation.EnableCaching;
 //@EnableTransactionManagement
 @EnableCaching
 @SpringBootApplication
-public class SwaggerAppMain {
+public class BootAllAppMain {
     public static void main(String[] args){
-        SpringApplication.run(SwaggerAppMain.class,args);
+        SpringApplication.run(BootAllAppMain.class,args);
     }
 }

@@ -31,7 +31,7 @@ allprojects {
     version '1.0-SNAPSHOT'
     apply plugin: 'java'
     apply plugin: 'idea'
-    sourceCompatibility = 1.8
+    sourceCompatibility = 11
 }
 subprojects {
     /* 注意gradle插件不再自动应用，所以这里需要指定 */
@@ -59,7 +59,6 @@ subprojects {
                 
 
                 "commons-lang:commons-lang:2.6",
-
                 group: 'org.projectlombok', name: 'lombok', version: '1.18.4'
 
         )
@@ -68,3 +67,10 @@ subprojects {
         testCompile group: 'junit', name: 'junit', version: '4.12'
     }
 }
+
+
+task copyTestResources(type: Copy) {
+    from "${projectDir}/src/main/resources"
+    into "${buildDir}/classes/main"
+}
+processTestResources.dependsOn copyTestResources

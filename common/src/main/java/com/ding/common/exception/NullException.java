@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
  * @Description:
  */
 @ControllerAdvice
-public class NullException  extends RuntimeException{
+public class NullException  extends NullPointerException{
     private String msg;
 
     public  NullException(){};

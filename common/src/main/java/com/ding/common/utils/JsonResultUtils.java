@@ -103,6 +103,7 @@ public class JsonResultUtils {
         json.put("msg",obj);
         return JSON.toJSONString(json);
     }
+
     /**
      *
      * @Description: 请求失败JSON数据格式

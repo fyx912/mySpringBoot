@@ -5,6 +5,8 @@ import com.ding.domain.Account;
 import com.ding.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
@@ -18,6 +20,9 @@ import java.util.List;
 @Component
 @RestController
 public class UserWeb {
+
+    private Logger  logger = LoggerFactory.getLogger(UserWeb.class);
+
     @Autowired
     private UserService userService;
 
@@ -26,6 +31,7 @@ public class UserWeb {
     @RequestMapping(value = "user",method = RequestMethod.GET)
     public List<Account> userAll(){
         this.stop();
+        logger.info("result:{}",userService.findUserAll());
         return userService.findUserAll();
     }
 
@@ -95,9 +101,9 @@ public class UserWeb {
 
     public void stop(){
         try {
-            Thread.sleep(1000)
-            ;
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
+            logger.error(e.getMessage());
             e.printStackTrace();
         }
     }

@@ -33,7 +33,7 @@ import java.util.Arrays;
 @Aspect
 @Component
 public class WebAspect {
-    private static final Logger logger = LoggerFactory.getLogger(WebAspect.class);
+    private  final Logger logger = LoggerFactory.getLogger(WebAspect.class);
 
     //时间同步
     ThreadLocal<Long> startTime = new ThreadLocal<>();

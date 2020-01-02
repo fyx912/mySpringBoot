@@ -2,6 +2,8 @@ package com.ding.web;
 
 import com.ding.common.exception.NullException;
 import com.ding.common.exception.UserException;
+import com.ding.common.utils.ProfileResolver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,4 +48,5 @@ public class ExceptionTest {
         return map;
 
     }
+
 }
