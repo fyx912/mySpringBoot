@@ -31,7 +31,7 @@ public class UserWeb {
     @RequestMapping(value = "user",method = RequestMethod.GET)
     public List<Account> userAll(){
         this.stop();
-        logger.info("result:{}",userService.findUserAll());
+        logger.info("--user---->result:{}",userService.findUserAll());
         return userService.findUserAll();
     }
 
@@ -41,6 +41,7 @@ public class UserWeb {
     @RequestMapping(value = "user/{id}",method = RequestMethod.GET)
     public Account findUser(@PathVariable Integer id){
         stop();
+        logger.info("--user---->result:{}",userService.findUserById(id));
         return userService.findUserById(id);
     }
 
