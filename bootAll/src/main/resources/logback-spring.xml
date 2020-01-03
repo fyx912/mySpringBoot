@@ -8,10 +8,17 @@
 <!--    <include resource="org/springframework/boot/logging/logback/base.xml" />-->
 
     <contextName>logback</contextName>
+    <!-- 定义全局参数常量 -->
+
     <!-- name的值是变量的名称，value的值时变量定义的值。通过定义的值会被插入到logger上下文中。定义变量后，可以使“${}”来使用变量。 -->
     <property name="log.path" value="${user.home}/logs" />
+    <property name="log.maxHistory" value="30"/><!-- 30表示30天 -->
+    <property name="log.maxFileSize" value="10MB"/><!-- 文件大小KB/MB  -->
+    <!--引入配置文件-->
+    <property resource="application.properties"/>
 
-    <property name="appName" value="app_log"></property>
+    <!--    <springProperty scope="context" name="ip" source="spring.cloud.client.ipAddress" />-->
+    <springProperty scope="context" name="appName" source="spring.application.name"/>
 
     <!--输出到控制台-->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -25,7 +32,7 @@
     <!-- 时间滚动输出 level为 DEBUG 日志 -->
     <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文件的路径及文件名 -->
-        <file>${log.path}/log_debug.log</file>
+        <file>${log.path}/${appName}/debug_${appName}.log</file>
         <!--日志文件输出格式-->
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
@@ -34,12 +41,11 @@
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 日志归档 -->
-            <fileNamePattern>${log.path}/debug/log-debug-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${log.path}/${appName}/debug_${appName}_%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>100MB</maxFileSize>
+                <maxFileSize>${log.maxFileSize}</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
-            <!--日志文件保留天数-->
-            <maxHistory>15</maxHistory>
+            <maxHistory>${log.maxHistory}</maxHistory>
         </rollingPolicy>
         <!-- 此日志文件只记录debug级别的 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -53,7 +59,7 @@
     <!-- 以下的大概意思是：1.先按日期存日志，日期变了，将前一天的日志文件名重命名为XXX%日期%索引，新的日志仍然是sys.log -->
     <!--             2.如果日期没有发生变化，但是当前日志的文件大小超过1KB时，对当前日志进行分割 重命名-->
     <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${log.path}/info.log</File>
+        <File>${log.path}/${appName}/${appName}.log</File>
         <!-- 此日志文件只记录info级别的 -->
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>info</level>
@@ -63,12 +69,10 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 活动文件的名字会根据fileNamePattern的值，每隔一段时间改变一次 -->
             <!-- 文件名：logs/sys.2018-04-05.0.log -->
-            <fileNamePattern>${log.path}/info/log-info-.%d.%i.log</fileNamePattern>
-            <!-- 每产生一个日志文件，该日志文件的保存期限为30天 -->
-            <maxHistory>30</maxHistory>
+            <fileNamePattern>${log.path}/${appName}/${appName}_.%d.%i.log.gz</fileNamePattern>
+            <maxHistory>${log.maxHistory}</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy  class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <!-- maxFileSize:这是活动文件的大小，默认值是10MB,本篇设置为1KB，只是为了演示 -->
-                <maxFileSize>10MB</maxFileSize>
+                <maxFileSize>${log.maxFileSize}</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
         <encoder>
@@ -82,18 +86,16 @@
 
     <!-- ERROR级别日志 -->
     <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${log.path}/error.log</File>
+        <File>${log.path}/${appName}/error_${appName}.log</File>
         <!-- rollingPolicy:当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名。 -->
         <!-- TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 活动文件的名字会根据fileNamePattern的值，每隔一段时间改变一次 -->
             <!-- 文件名：logs/error.2018-04-05.0.log -->
-            <fileNamePattern>${log.path}/error/error-.%d.%i.log</fileNamePattern>
-            <!-- 每产生一个日志文件，该日志文件的保存期限为30天 -->
-            <maxHistory>30</maxHistory>
+            <fileNamePattern>${log.path}/${appName}/error_${appName}_.%d.%i.log.gz</fileNamePattern>
+            <maxHistory>${log.maxHistory}</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy  class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <!-- maxFileSize:这是活动文件的大小，默认值是10MB,本篇设置为1KB，只是为了演示 -->
-                <maxFileSize>10MB</maxFileSize>
+                <maxFileSize>${log.maxFileSize}</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
         <encoder>
@@ -110,10 +112,49 @@
         </filter>
     </appender>
 
+    <!-- logstash  json info 数据-->
+    <appender name="INFO_FILE_JSON" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.path}/${appName}/${appName}_logstash.json</File>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${appName}/${appName}_logstash_.%d.%i.json.gz</fileNamePattern>
+            <maxHistory>${log.maxHistory}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy  class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${log.maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                        "ip": "${ip}",
+                        "app": "${appName}",
+                        "level": "%level",
+                        "trace": "%X{X-B3-TraceId:-}",
+                        "span": "%X{X-B3-SpanId:-}",
+                        "parent": "%X{X-B3-ParentSpanId:-}",
+                        "thread": "%thread",
+                        "class": "%logger{40}",
+                        "message": "%message",
+                        "stack_trace": "%exception{10}"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
     <root>
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="DEBUG_FILE"/>
         <appender-ref ref="INFO_FILE" />
+        <appender-ref ref="INFO_FILE_JSON" />
         <appender-ref ref="ERROR_FILE" />
     </root>
 
