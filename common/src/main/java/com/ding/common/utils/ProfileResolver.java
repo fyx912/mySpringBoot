@@ -2,9 +2,7 @@ package com.ding.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +13,8 @@ import java.util.Map;
  * @Date: 2020-01-02 10:56
  * @Description:
  */
-@Component
-@PropertySource(value = "config/code.properties",encoding = "UTF-8")
+//@Component
+//@PropertySource(value = "config/code.properties",encoding = "UTF-8")
 public class ProfileResolver {
     @Autowired
     private  Environment env;

@@ -56,8 +56,8 @@ subprojects {
                 "org.springframework.boot:spring-boot-starter-logging:${springBootVersion}",
                 "org.springframework.boot:spring-boot-devtools:${springBootVersion}",
 //                "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}",
-                
 
+                "com.google.guava:guava:28.2-jre",
                 "commons-lang:commons-lang:2.6",
                 //日志输出json格式
                 "net.logstash.logback:logstash-logback-encoder:6.3",

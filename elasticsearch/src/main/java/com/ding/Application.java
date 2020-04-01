@@ -12,7 +12,7 @@ package com.ding;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -22,10 +22,15 @@ import org.springframework.context.annotation.Configuration;
  * @create 2019/3/21
  * @since 1.0.0
  */
-@Configuration
 @SpringBootApplication
+@ComponentScan({"com.ding.*"})
 public class Application {
     public static void main(String[] args){
         SpringApplication.run(Application.class,args);
+//        ApplicationContext applicationContext =
+//                SpringApplication.run(Application.class,args);
+//        for (String name : applicationContext.getBeanDefinitionNames()) {
+//            System.out.println(name);
+//        }
     }
 }

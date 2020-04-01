@@ -1,17 +1,15 @@
 package com.ding.domain;
 
 
-import lombok.Data;
-
 import java.util.Date;
 
 /**
  * 世界杯冠军猜想
- * @author yaqiangding
+ * @author ding
  * @version 1.0
  * @create 2018-5-14
  */
-@Data
+//@Data
 public class WorldCupChampionGuess {
     private Integer id;
     private Integer wId;//编号

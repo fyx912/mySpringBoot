@@ -5,21 +5,30 @@ plugins {
 group 'com.ding'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 11
 
 repositories {
     mavenCentral()
 }
 
 ext{
-    elasticsearchVersion = "6.2.2.RELEASE"
+    esVersion = "7.6.0"
 }
 
 dependencies {
-    compile (
-            "org.elasticsearch:elasticsearch:${elasticsearchVersion}",
-            "org.elasticsearch.client:transport:transport${elasticsearchVersion}",
-            "org.springframework.boot:spring-boot-starter-data-elasticsearch:${springBootVersion}"
+    compile(
+            "org.elasticsearch:elasticsearch:${esVersion}",
+            "org.elasticsearch.client:elasticsearch-rest-client:${esVersion}",
+
+            'com.hankcs:hanlp:portable-1.7.7',
+            "com.github.magese:ik-analyzer:8.3.0"
     )
+    compile (
+            "org.elasticsearch.client:elasticsearch-rest-high-level-client:${esVersion}"){
+        //排除依懒
+        exclude group: "org.elasticsearch",module:'elasticsearch'
+        exclude group: "org.elasticsearch.client",module: "elasticsearch-rest-client"
+    }
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
