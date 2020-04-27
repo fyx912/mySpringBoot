@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'com.ding'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile(
+            //引入模块
+            project(":model"),
+            project(":common"),
+            "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
+    )
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
