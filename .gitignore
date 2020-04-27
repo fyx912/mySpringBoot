@@ -5,11 +5,15 @@ bin/
 out/
 
 *.class
+*.bat
+gradlew
 
 #Intellij
 *.iml
 *.idea/
 out/
+gradle/
+.gradle/
 build/
 target/
 *.log
