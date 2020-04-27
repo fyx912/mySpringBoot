@@ -1,0 +1,25 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">-->
+<!--<mapper namespace="com.ding.dao.OderDao">-->
+    <!--<resultMap id="resultMap" type="com.ding.domain.Order">-->
+        <!--<id column="id" property="id" />-->
+        <!--<id column="orderNo" property="orderNo" />-->
+        <!--<id column="orderStatus" property="orderStatus" />-->
+        <!--<id column="payNo" property="payNo" />-->
+    <!--</resultMap>-->
+
+    <!--<select id="findAll" resultMap="resultMap">-->
+        <!--select  * from t_order-->
+    <!--</select>-->
+
+    <!--<select id="findById" resultType="com.ding.domain.Order">-->
+        <!--select  * from t_order where orderNo=#{orderNo}-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash;<insert id="saveOrder" parameterType="com.ding.domain.Order">&ndash;&gt;-->
+        <!--&lt;!&ndash;insert into t_order (orderNo,orderStatus) values(#{orderNo},#{orderStatus})&ndash;&gt;-->
+    <!--&lt;!&ndash;</insert>&ndash;&gt;-->
+    <!--<update id="updateOrder" parameterType="com.ding.domain.Order">-->
+        <!--update t_order set  orderStatus= #{orderStatus} ,payNo=#{payNo} where orderNo=#{orderNo}-->
+    <!--</update>-->
+<!--</mapper>-->

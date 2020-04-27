@@ -1,0 +1,26 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"-->
+        <!--"http://mybatis.org/dtd/mybatis-3-mapper.dtd">-->
+<!--<mapper namespace="com.ding.dao.PayDao">-->
+    <!--<resultMap id="resultMap" type="com.ding.domain.Pay">-->
+        <!--<id column="id" property="id" />-->
+        <!--<id column="payNo" property="payNo" />-->
+        <!--<id column="payStatus" property="payStatus" />-->
+        <!--<id column="money" property="money" />-->
+    <!--</resultMap>-->
+
+    <!--<select id="findAll" resultMap="resultMap">-->
+        <!--select  * from t_pay-->
+    <!--</select>-->
+
+    <!--<select id="findById" resultType="com.ding.domain.Pay">-->
+        <!--select  * from t_pay where payNo=#{payNo}-->
+    <!--</select>-->
+
+    <!--<insert id="save" parameterType="com.ding.domain.Pay">-->
+        <!--insert into t_pay (payNo,payStatus,money) vlues(#{payNo},#{payStatus},#{money})-->
+    <!--</insert>-->
+    <!--<update id="update" parameterType="com.ding.domain.Pay">-->
+        <!--update t_pay set  payStatus= #{payStatus}  where payNo=#{payNo}-->
+    <!--</update>-->
+<!--</mapper>-->

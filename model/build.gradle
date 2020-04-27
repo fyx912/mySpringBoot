@@ -1,13 +1,23 @@
+plugins {
+    id 'java'
+    // lombok使用打包时需加上这个 否则打包时候会报无法找到 getter 等一些方法
+//    id("io.freefair.lombok") version "4.1.1"
+}
+jar.enabled=true
+
 group 'com.ding'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
+
+
 
 sourceCompatibility = 11
 
 repositories {
     mavenCentral()
 }
+
+sourceSets.main.resources.srcDirs = ["src/main/java","src/main/resources"]
 
 dependencies {
     compile (
@@ -20,4 +30,10 @@ dependencies {
 
     )
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+processResources {
+    from('src/main/java') {
+        include '**/*.xml'
+    }
 }

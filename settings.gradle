@@ -9,4 +9,5 @@ include 'netty'
 include 'springBoot-webSocket'
 include 'elastic-job'
 include 'common'
-
+include 'A-server'
+include 'A-client'
