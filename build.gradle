@@ -9,7 +9,7 @@ buildscript {
      */
     buildscript {
         ext {  //定义一个变量，统一规定springboot的版本
-            springBootVersion = '2.2.2.RELEASE'
+            springBootVersion = '2.2.6.RELEASE'
         }
         repositories {
             mavenLocal()
@@ -64,7 +64,7 @@ subprojects {
                 group: 'org.projectlombok', name: 'lombok', version: '1.18.4'
 
         )
-        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.56'
+        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.68'
 
         testCompile group: 'junit', name: 'junit', version: '4.12'
     }
