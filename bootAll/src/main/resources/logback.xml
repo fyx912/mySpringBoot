@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
 
-    <property name="PROJECT" value="mySpringBoot" />
-    <property name="APP_NAME" value="bootAll" />
+    <property name="PROJECT" value="springboot" />
+    <property name="APP_NAME" value="all" />
     <property name="APP_LOG_PATH" value="${user.home}/logs/${PROJECT}/${APP_NAME}/${APP_NAME}" />
     <property name="APP_LOG_PATH_ERR" value="${user.home}/logs/${PROJECT}/${APP_NAME}/error/err_${APP_NAME}" />
 
     <property name="log.maxHistory" value="30"/><!-- 30表示30天 -->
-    <property name="log.maxFileSize" value="50MB"/><!-- 文件大小KB/MB  -->
+    <property name="log.maxFileSize" value="256MB"/><!-- 文件大小KB/MB  -->
 
+
+    <!-- 彩色日志依赖的渲染类 -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+    <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
+    <!-- 彩色日志格式 -->
+    <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 
 
     <!-- %m输出的信息,%p日志级别,%t线程名,%d日期,%c类的全名,%i索引【从数字0开始递增】,,, -->
@@ -86,14 +93,5 @@
         <appender-ref ref="FILE" />
         <appender-ref ref="ERROR_FILE" />
     </root>
-    <!-- 指定项目中某个包，当有日志操作行为时的日志记录级别 -->
-    <!-- com.appley为根包，也就是只要是发生在这个根包下面的所有日志操作行为的权限都是DEBUG -->
-    <!-- 级别依次为【从高到低】：FATAL > ERROR > WARN > INFO > DEBUG > TRACE  -->
-    <logger name="com.park.test" level="DEBUG">
-        <appender-ref ref="FILE" />
-    </logger>
 
-    <logger name="com.park.test" level="WARN">
-        <appender-ref ref="ERROR_FILE" />
-    </logger>
 </configuration>
