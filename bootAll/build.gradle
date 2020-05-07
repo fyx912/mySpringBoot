@@ -1,16 +1,12 @@
 plugins {
     id 'java'
 }
-
 group 'com.ding'
 version '1.0-SNAPSHOT'
-
 sourceCompatibility = 11
-
 repositories {
     mavenCentral()
 }
-
 dependencies {
     compile(
             //引入模块

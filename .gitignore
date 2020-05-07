@@ -1,27 +1,29 @@
-gradle/
-.DS_Store
+!.gitignore
 
-bin/
-out/
-
-*.class
+target/
+.settings/
+.classpath
+.project
 *.bat
-gradlew
+*.settins
+*.class
+.project
+*.factorypath
+*.bat/
+*.apt_generated/
+*.gradle/
 
 #Intellij
 *.iml
 *.idea/
 out/
-gradle/
-.gradle/
 build/
 target/
 *.log
 logs/
 
-#eclipse
-.project
-.classpath
-.settins/
-
-
+bin/
+out/
+.gradle/
+gradle/
+gradlew
