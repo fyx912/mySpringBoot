@@ -21,7 +21,8 @@ dependencies {
             "org.elasticsearch.client:elasticsearch-rest-client:${esVersion}",
 
             'com.hankcs:hanlp:portable-1.7.7',
-            "com.github.magese:ik-analyzer:8.3.0"
+            "com.github.magese:ik-analyzer:8.3.0",
+            "org.springframework.boot:spring-boot-starter-aop"
     )
     compile (
             "org.elasticsearch.client:elasticsearch-rest-high-level-client:${esVersion}"){

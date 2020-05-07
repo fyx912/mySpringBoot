@@ -25,8 +25,8 @@ import javax.annotation.PostConstruct;
 @Configuration
 @ConfigurationProperties(prefix = "es", ignoreUnknownFields = true)
 public class ESConfig {
-    private  String host = "127.0.0.1";
-    private  int port = 9200;
+    private  String host = "192.168.0.168";
+    private  int port = 12000;
     private  String scheme = "http";
     private  Integer connectNum=100;
     private  Integer connectPerRoute=100;

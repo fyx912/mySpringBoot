@@ -24,6 +24,8 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 import org.elasticsearch.search.sort.SortOrder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,8 +45,8 @@ import java.util.Map;
 
 
 @Service("esUtilService")
-@Slf4j
 public class EsUtilServiceImpl implements EsUtilService{
+    private static Logger log = LoggerFactory.getLogger(EsUtilServiceImpl.class);
 
     @Autowired
     private RestHighLevelClient client;

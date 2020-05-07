@@ -11,8 +11,6 @@ import lombok.EqualsAndHashCode;
  * @ClassName ServiceException
  * @date 2020-03-11 16:29
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
 public class ServiceException extends RuntimeException {
 
     private String msg;
@@ -37,5 +35,21 @@ public class ServiceException extends RuntimeException {
                 "msg='" + msg + '\'' +
                 ", code=" + code +
                 '}';
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
     }
 }

@@ -61,7 +61,7 @@ subprojects {
                 "commons-lang:commons-lang:2.6",
                 //日志输出json格式
                 "net.logstash.logback:logstash-logback-encoder:6.3",
-                group: 'org.projectlombok', name: 'lombok', version: '1.18.4'
+                group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
 
         )
         compile group: 'com.alibaba', name: 'fastjson', version: '1.2.68'

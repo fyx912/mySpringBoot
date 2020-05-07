@@ -1,7 +1,10 @@
 package com.ding.utils;
 
+import com.ding.web.EsWeb;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.HashSet;
@@ -15,8 +18,8 @@ import java.util.Set;
  * @ClassName FileUtil
  * @date 2020-04-01 11:11
  */
-@Slf4j
 public class StopWordsFileUtil {
+    private static Logger log = LoggerFactory.getLogger(StopWordsFileUtil.class);
     public static  String CONFIG_Name="config";
     public static String FILE_NAME= "cn_word";
     public static String fileSuffix= ".txt";//文件名，后缀
