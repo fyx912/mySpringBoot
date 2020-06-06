@@ -9,7 +9,7 @@ buildscript {
      */
     buildscript {
         ext {  //定义一个变量，统一规定springboot的版本
-            springBootVersion = '2.2.6.RELEASE'
+            springBootVersion = '2.2.7.RELEASE'
         }
         repositories {
             mavenLocal()

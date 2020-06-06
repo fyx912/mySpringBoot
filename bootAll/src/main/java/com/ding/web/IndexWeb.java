@@ -31,4 +31,9 @@ public class IndexWeb {
        System.out.println(flag);
         return redisUtils.get("ding").toString() ;
     }
+
+    @GetMapping("/exception")
+    public String exception(){
+        throw  new NullPointerException("异常信息");
+    }
 }

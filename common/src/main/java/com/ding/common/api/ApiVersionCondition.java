@@ -1,6 +1,8 @@
 package com.ding.common.api;
 
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,16 +14,16 @@ import java.util.regex.Pattern;
  * @Date: 2019-09-18 09:42
  * @Description:
  */
-@Log
-public class ApiVersionCondition implements RequestCondition<ApiVersionCondition> {
 
+public class ApiVersionCondition implements RequestCondition<ApiVersionCondition> {
+    private Logger log = LoggerFactory.getLogger(ApiVersionCondition.class);
     //从URL中提取版本部分，例如：[v0-9]
     private final static Pattern VERSION_PREFIX_PATTERN = Pattern.compile("v(\\d+)/");
 
     private int apiVersion;
 
     public  ApiVersionCondition(int apiVersion){
-        log.info("ApiVersionCondition apiVersion ==> " + apiVersion);
+        log.info("ApiVersionCondition apiVersion ==>{} ", apiVersion);
         log.info("ApiVersionCondition Init...");
         this.apiVersion = apiVersion;
     }
