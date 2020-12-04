@@ -9,3 +9,6 @@ include 'netty'
 include 'springBoot-webSocket'
 include 'elastic-job'
 include 'common'
+include 'redis-cluster'
+include 'webFlux'
+

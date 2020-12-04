@@ -8,8 +8,9 @@ buildscript {
      * gradle脚本执行所需依赖，分别是对应的maven库和插件
      */
     buildscript {
+        //配置全局依赖版本信息
         ext {  //定义一个变量，统一规定springboot的版本
-            springBootVersion = '2.2.7.RELEASE'
+            springBootVersion = '2.2.11.RELEASE'
         }
         repositories {
             mavenLocal()
@@ -25,7 +26,7 @@ buildscript {
     }
 }
 
-
+//配置所有项目公共内容
 allprojects {
     group 'com.ding'
     version '1.0-SNAPSHOT'
@@ -33,6 +34,7 @@ allprojects {
     apply plugin: 'idea'
     sourceCompatibility = 11
 }
+//配置子工程
 subprojects {
     /* 注意gradle插件不再自动应用，所以这里需要指定 */
     apply plugin: 'org.springframework.boot'
@@ -47,6 +49,7 @@ subprojects {
 //        maven { url "http://central.maven.org/maven2/" }
         mavenCentral()
     }
+    //配置子模块依赖
     dependencies{
         compile (
                 "org.springframework.boot:spring-boot-starter-parent:${springBootVersion}",
@@ -64,7 +67,7 @@ subprojects {
                 group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
 
         )
-        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.68'
+        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.75'
 
         testCompile group: 'junit', name: 'junit', version: '4.12'
     }

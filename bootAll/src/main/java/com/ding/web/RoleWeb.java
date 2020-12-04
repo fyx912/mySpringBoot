@@ -1,5 +1,6 @@
 package com.ding.web;
 
+import com.ding.common.utils.JsonResultUtils;
 import com.ding.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class RoleWeb {
 
     @GetMapping("/")
     public String findAll(){
-        return  roleService.findAll();
+
+        return  JsonResultUtils.success(roleService.findAll());
     }
 }

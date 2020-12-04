@@ -1,5 +1,6 @@
 package com.ding.web;
 
+import com.ding.domain.Account;
 import com.ding.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,7 @@ public class IndexWeb {
 
     @GetMapping("/exception")
     public String exception(){
+        Account account = new Account();
         throw  new NullPointerException("异常信息");
     }
 }

@@ -19,6 +19,6 @@ public class SysRoleService {
     private SysRoleDao roleDao;
 
     public String findAll(){
-       return   JsonResultUtils.success(roleDao.findAll());
+       return   JsonResultUtils.success();
     }
 }

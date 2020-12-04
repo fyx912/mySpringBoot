@@ -3,177 +3,117 @@ package com.ding.common.utils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.ding.common.exception.ServiceException;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
- * @program: common
- * @description: 根据返回数据对象可封装相应的结果模板工具类
- * @author: tinTin
- * @create: 2019-04-24 17:47
+ * @author ding
+ * @version V3.0
+ * @Classname JsonResult
+ * @Description JSON处理工具类
+ * @copyright <p>富海阳光(北京)技术发展有限公司</p>
+ * @Date 2020/4/20 下午3:41
  */
 public class JsonResultUtils {
 
-    public static String message(int code, String msg){
-        Map map = new HashMap();
-        map.put("code",code);
-        map.put("msg",msg);
-        return JSONObject.toJSONString(map);
-    }
-
-    /**
-     *
-     * @Description:  封装JSON
-     * @auther: tinTin
-     * @date:
-     * @param code 编码
-     * @param obj 数据
-     * @return:
-     */
-    public static String success(int code, Object obj){
-        Map map = new HashMap();
-        map.put("code",code);
-        map.put("msg","成功");
-        map.put("data",obj);
-        return jsonFormat(map);
-    }
-
-    /**
-     * data为null 返回[]
-     * 成功JSON信息
-     * @param obj
-     * @return
-     */
-    public static String success(Object obj){
-        JSONObject json = JSON.parseObject(success());
-        json.put("data",obj);
-        return jsonFormat(json);
-    }
-
-    /**
-     * 成功JSON信息,分页
-     * @param indexPage 当前第几页
-     * @param pageSize 页面大小
-     * @param total 总条数
-     * @param object
-     * @return
-     */
-    public static String success(Integer indexPage, Integer pageSize, Integer total, Object object){
-        JSONObject json = JSON.parseObject(success());
-        json.put("data",object);
-        json.put("page",dataPage(indexPage,pageSize,total));
-        return jsonFormat(json);
-    }
-
-    /**
-     * 成功JSON信息
-     * @return
-     */
+    //通用返回成功
     public static String success(){
-        Map map = new HashMap();
-        map.put("code",0);
-        map.put("msg","成功");
-        return JSONObject.toJSONString(map);
-    }
-    /**
-     *
-     * @Description: 请求失败类型JSON数据格式
-     * @auther:  tinTin
-     * @date:
-     * @param code 1为通用错误代码
-     * @return: 返回json
-     */
-    public static String failed(){
-        Map map = new HashMap();
-        map.put("code",1);
-        map.put("msg","失败");
-        return JSON.toJSONString(map);
-    }
-    /**
-     *
-     * @Description: 请求失败类型JSON数据格式
-     * @auther:  tinTin
-     * @date:
-     * @param code 1为通用错误代码
-     * @return: 返回json
-     */
-    public static String failed(Object obj){
-        JSONObject json = JSON.parseObject(failed());
-        json.put("msg",obj);
-        return JSON.toJSONString(json);
+       Map map = new HashMap();
+       map.put("code",JsonResultEnum.SUCCESS.getCode());
+       map.put("msg",JsonResultEnum.SUCCESS.getMessage());
+       return  JSON.toJSONString(map);
     }
 
-    /**
-     *
-     * @Description: 请求失败JSON数据格式
-     * @auther:  tinTin
-     * @date:
-     * @param code 失败代码
-     * @param msg 请求失败原因
-     * @return: 返回json
-     */
-    public static String failed(int code, Object obj){
-        Map map = new HashMap();
-        map.put("code",code);
-        map.put("msg",obj);
-        return JSON.toJSONString(map);
-    }
-
-    /**
-     *
-     * @Description: 错误类型JSON数据格式
-     * @auther:  tinTin
-     * @date:
-     * @param code -1为通用错误代码
-     * @param msg 错误信息
-     * @return: 返回json
-     */
-    public static String error(Object obj){
-        Map map = new HashMap();
-        map.put("code",-1);
-        map.put("msg",obj);
-        return JSON.toJSONString(map);
-    }
-
-
-    /**
-     *  数据分页
-     * @param indexPage 第几页
-     * @param pageSize 当前页共多少页
-     * @param total 总共多少条
-     * @return
-     */
-    public static Map<String, Integer> dataPage(Integer indexPage, Integer pageSize, Integer total){
-        Map map = new HashMap();
-        map.put("pageDown",false);//下页
-        map.put("pageUp",false);//上页
-        map.put("startPage",1);//初始页
-        if (isEmpty(indexPage) || 0 >= indexPage )
-            indexPage = 1;
-        map.put("indexPage",indexPage);//索引页
-        if (isEmpty(pageSize)|| 0 >= pageSize || pageSize >= 100)
-            pageSize = 10;
-        map.put("pageSize",pageSize);//页面大小
-        int indexPageSize = (indexPage -1)*pageSize +1;
-        map.put("indexPageSize",indexPageSize);//索引页面条数
-        int endPageSize = indexPage * pageSize;
-        if (endPageSize > total)
-            endPageSize = total;
-        map.put("endPageSize",endPageSize);//索引结束页面条数
-
-        int  endPage =  (total % pageSize == 0 ) ? ( total / pageSize ) :(total / pageSize + 1) ;//共多少页面
-        map.put("endPage",endPage);
-        map.put("total",total);//总条数目
-        if ( indexPage < endPage)
-            map.put("pageDown",true);//下页
-        if (1 < indexPage && indexPage <= endPage)
-            map.put("pageUp",true);//上页
+    //通用返回成功
+    private static JSONObject successMap(){
+        JSONObject map = new JSONObject(true);
+        map.put("code",JsonResultEnum.SUCCESS.getCode());
+        map.put("msg",JsonResultEnum.SUCCESS.getMessage());
         return map;
     }
 
-    public static boolean isEmpty(Object str) {
-        return (str == null || "".equals(str));
+
+    //通用返回成功
+    public static String success(Integer code, String message){
+        Map map = new HashMap();
+        map.put("code",code);
+        map.put("msg",message);
+        return  JSON.toJSONString(map);
+    }
+
+    //通用返回成功
+    public static String success(Object value){
+        JSONObject jsonObject = successMap();
+        if (value == null){
+            jsonObject.put("data","");
+        }else {
+            jsonObject.put("data",value);
+        }
+        return  jsonFormat(jsonObject);
+    }
+
+
+    //通用返回成功
+    public static String success(Integer code, String message,Object value){
+        Map map = new HashMap();
+        map.put("code",code);
+        map.put("msg",message);
+        if (value == null){
+            map.put("data","");
+        }else {
+            map.put("data",value);
+        }
+        return  jsonFormat(map);
+    }
+
+    //通用返回失败
+    public static String failed(){
+        Map map = new HashMap();
+        map.put("code",JsonResultEnum.FAILED.getCode());
+        map.put("msg",JsonResultEnum.FAILED.getMessage());
+        return  JSON.toJSONString(map);
+    }
+
+    //通用返回失败
+    public static String failed(String massages){
+        Map map = new HashMap();
+        map.put("code",JsonResultEnum.FAILED.getCode());
+        map.put("msg",massages);
+        return  JSON.toJSONString(map);
+    }
+
+    //通用返回失败
+    public static String failed(Integer code, String massages){
+        Map map = new HashMap();
+        map.put("code",code);
+        map.put("msg",massages);
+        return  JSON.toJSONString(map);
+    }
+
+    /**
+     *  返回结果判断，并输出处理成功或失败的json
+     * @param obj result
+     * @return
+     */
+    public static  String resultTOJson(Object obj){
+        if (obj instanceof  Integer){
+            Integer result = (Integer) obj;
+            if (result!=null&&result>0){
+                return success();
+            }
+        }
+        if (obj instanceof  Boolean){
+            Boolean flag = (Boolean) obj;
+            if (flag){
+                return success();
+            }
+        }
+
+        return failed();
     }
 
     /**
@@ -182,7 +122,92 @@ public class JsonResultUtils {
      * @return
      */
     public static String jsonFormat(Object obj){
-        return JSON.toJSONString(obj, SerializerFeature.WriteNonStringKeyAsString, SerializerFeature.WriteNullListAsEmpty, SerializerFeature.WriteMapNullValue);
+        return JSON.toJSONString(obj,
+                SerializerFeature.WriteNonStringKeyAsString,
+                SerializerFeature.WriteNullListAsEmpty,
+                SerializerFeature.WriteMapNullValue,
+                SerializerFeature.WriteNullStringAsEmpty,
+                SerializerFeature.WriteBigDecimalAsPlain,
+                SerializerFeature.WriteNullNumberAsZero, //数值字段如果为null,输出为0,而非null
+                SerializerFeature.WriteNullBooleanAsFalse //Boolean字段如果为null,输出为false,而非null
+        );
     }
+
+    /**
+     * 校验json格式数据是否成功
+     * @return
+     */
+    public static boolean dataValidation(String  jsonResult){
+        if (StringUtils.isEmpty(jsonResult)){
+            throw  new NullPointerException("接收json数据为空!");
+        }
+        JSONObject jsonObject = JSON.parseObject(jsonResult);
+        if (jsonObject.getString("code") instanceof  String){
+            if (jsonObject.get("code").equals("0")){
+                return  true;
+            }
+        }
+        if (jsonObject.getInteger("code") instanceof  Integer){
+            if (jsonObject.getIntValue("code")==0){
+                return  true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     *  json 转对象
+     * @param json   json
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static  <T> T  jsonToEntity(String json,Class<T> clazz){
+        dataValidation(json);
+        JSONObject jsonObject = JSON.parseObject(json);
+        if (jsonObject.containsKey("data")){
+            Optional.of(jsonObject.get("data"));
+           return JSON.toJavaObject(jsonObject.getJSONObject("data"),clazz);
+        }
+        throw new ServiceException(2,"数据异常!");
+    }
+
+    /**
+     * 对象转JSON
+     * @param obj
+     * @return
+     */
+    public static  String ObjectToJson(Object obj){
+        return  JSON.toJSON(obj).toString();
+    }
+
+//
+//    /**
+//     * ------------------使用链式编程,返回类本身----------------------------
+//     */
+//
+//    //自定义返回数据
+//    public JsonResult data(Map<String, Object> map){
+//        this.setData(map);
+//        return this;
+//    }
+//
+//    //通用data
+//    public JsonResult data(String key, Object value){
+//        this.data.put(key,value);
+//        return this;
+//    }
+//
+//    public JsonResult message(String message){
+//        this.setMsg(message);
+//        return this;
+//    }
+//
+//    public JsonResult code(Integer code){
+//        this.setCode(code);
+//        return this;
+//    }
+
+
 
 }

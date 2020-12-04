@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
         }else{
             log.error("【系统异常】,{}",e);
             e.printStackTrace();
-            return JsonResultUtils.error("未知错误！");
+            return JsonResultUtils.failed("未知错误!");
         }
 
     }

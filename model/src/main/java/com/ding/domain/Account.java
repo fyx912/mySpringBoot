@@ -22,6 +22,8 @@ public class Account {
     public Date date;
     public String address;
 
+    public Account(){};
+
     public Account(Integer id,String name,Integer age,String address){
         this.id=id;
         this.name=name;

@@ -1,7 +1,6 @@
 package com.ding.config;
 
 
-import com.sun.org.apache.bcel.internal.generic.PUSH;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.*;
@@ -9,8 +8,6 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.Resource;
 
 
 /**
@@ -56,8 +53,8 @@ public class RabbitmqConfig {
 
     /**
      * 路由key绑定交换机
-     * @param queueMessage
-     * @param exchange
+     * @param HelloCallQueue
+     * @param directExchangeHello
      * @return
      */
     @Bean
