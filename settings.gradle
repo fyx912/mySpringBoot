@@ -11,4 +11,5 @@ include 'elastic-job'
 include 'common'
 include 'redis-cluster'
 include 'webFlux'
+include 'elk'
 

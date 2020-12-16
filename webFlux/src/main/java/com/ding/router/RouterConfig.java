@@ -1,15 +1,19 @@
 package com.ding.router;
 
 import com.ding.web.TimeHandler;
+import com.ding.web.WeChatHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
+import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 /**
  * @author tintin
@@ -27,6 +31,13 @@ public class RouterConfig {
     @Bean
     public RouterFunction<ServerResponse> myRouter(){
         return route(GET("/time"),request -> timeHandler.getTime(request))
-                .andRoute(GET("date"),request -> timeHandler.getDate(request));
+                .andRoute(GET("date"),request -> timeHandler.getDate(request))
+                .andRoute(GET(""), request -> ok().body(Mono.just("Welcome flux..."),String.class));
     }
+
+//    @Bean
+//    public RouterFunction<ServerResponse> weChatRouter(WeChatHandler weChatHandler){
+//        String prentPath = "wechat";
+//        return route(POST(prentPath+"/officialAccount/bind"),weChatHandler::weChatOfficialAccountBind);
+//    }
 }

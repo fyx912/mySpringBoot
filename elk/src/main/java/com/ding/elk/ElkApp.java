@@ -1,4 +1,4 @@
-package com.ding;
+package com.ding.elk;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,13 +8,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version V1.0
  * @Description
  * @@copyright
- * @ClassName AppServer
- * @date 2020-12-03 18:16
+ * @ClassName ElkApp
+ * @date 2020-12-14 16:40
  */
 @SpringBootApplication
-public class AppServer {
+public class ElkApp {
     public static void main(String[] args){
-        SpringApplication.run(AppServer.class,args);
+        SpringApplication.run(ElkApp.class);
     }
-
 }
